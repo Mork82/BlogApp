@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "421949512958",
+    "project_id": "blogapp-79b5d",
+    "storage_bucket": "blogapp-79b5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421949512958:android:3ebf53da5073b2e56799af",
+        "android_client_info": {
+          "package_name": "com.corcoles.blogapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421949512958-3gff9brfmaeeo9vbcnok349o51aibh47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqZd8EBwWS00HFzA_iqkFN3uvVCM3JE_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421949512958-3gff9brfmaeeo9vbcnok349o51aibh47.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
