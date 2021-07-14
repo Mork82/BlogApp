@@ -2,4 +2,6 @@
     <string name="app_name">BlogApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_singin">Sing In</string>
+    <string name="button_not_have_an_acount_sing_up">Not have an acount? Sing Up</string>
 </resources>

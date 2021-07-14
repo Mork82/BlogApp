@@ -1,9 +1,8 @@
-package com.corcoles.blogapp.data.remote
+package com.corcoles.blogapp.data.remote.home
 
 import com.corcoles.blogapp.core.Resource
 import com.corcoles.blogapp.data.model.Post
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 

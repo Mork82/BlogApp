@@ -1,4 +1,4 @@
-package com.corcoles.blogapp.domain
+package com.corcoles.blogapp.domain.home
 
 import com.corcoles.blogapp.core.Resource
 import com.corcoles.blogapp.data.model.Post

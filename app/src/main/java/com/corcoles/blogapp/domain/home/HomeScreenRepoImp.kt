@@ -1,8 +1,8 @@
-package com.corcoles.blogapp.domain
+package com.corcoles.blogapp.domain.home
 
 import com.corcoles.blogapp.core.Resource
 import com.corcoles.blogapp.data.model.Post
-import com.corcoles.blogapp.data.remote.HomeScreenDataSource
+import com.corcoles.blogapp.data.remote.home.HomeScreenDataSource
 
 /*
 * Clase encargada de conectar con el data Source para retornar ese valor
