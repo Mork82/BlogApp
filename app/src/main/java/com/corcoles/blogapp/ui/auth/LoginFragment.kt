@@ -50,6 +50,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding = FragmentLoginBinding.bind(view)
         isUserLoggedIn()
         doLogin()
+        goToSingUp()
 
     }
 
@@ -74,6 +75,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             validateCredentials(email, password)
             singIn(email, password)
         }
+    }
+    //metodo para navegare al fragment registro de
+    private fun goToSingUp(){
+        binding.txtSingup.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
     }
 
     //metodo para validar los campos

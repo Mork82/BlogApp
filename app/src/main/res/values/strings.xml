@@ -4,4 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="button_singin">Sing In</string>
     <string name="button_not_have_an_acount_sing_up">Not have an acount? Sing Up</string>
+    <string name="user_name">User Name</string>
+    <string name="button_singUp">Sing Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
 </resources>
