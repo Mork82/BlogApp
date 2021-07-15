@@ -1,6 +1,6 @@
 package com.corcoles.blogapp.data.remote.home
 
-import com.corcoles.blogapp.core.Resource
+import com.corcoles.blogapp.core.Result
 import com.corcoles.blogapp.data.model.Post
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 * Clase encargada de traer la informacion de Firebase
 * */
 class HomeScreenDataSource {
-    suspend fun getLastestPost(): Resource<List<Post>> {
+    suspend fun getLastestPost(): Result<List<Post>> {
 
         val post_list = mutableListOf<Post>()
 
@@ -24,7 +24,7 @@ class HomeScreenDataSource {
                 post_list.add(fbPost) //añadimos a la lista de post el documento de cada iteracion del bucle
             }
         }
-        return Resource.Success (post_list)
+        return Result.Success (post_list)
     }
 
 }

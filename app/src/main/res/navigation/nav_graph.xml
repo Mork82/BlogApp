@@ -17,10 +17,18 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            app:destination="@id/homeScreenFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -29,6 +37,10 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            app:destination="@id/homeScreenFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 </navigation>

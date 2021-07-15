@@ -3,7 +3,7 @@ package com.corcoles.blogapp.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.corcoles.blogapp.core.Resource
+import com.corcoles.blogapp.core.Result
 import com.corcoles.blogapp.domain.home.HomeScreenRepo
 import kotlinx.coroutines.Dispatchers
 /*
@@ -16,13 +16,13 @@ class HomeScreenViewModel(private val repo: HomeScreenRepo) : ViewModel() {
     fun fetLastestPost() = liveData(Dispatchers.IO){
 
        //Emite un valor a la UI para poder mostrar un estado de carga antes de ir a bsucar la info al server
-        emit(Resource.Loading())
+        emit(Result.Loading())
 
         //Bloque try/Catch para poder capturar los error de la corrutina
         try {
             emit(repo.getLastestPost()) // Metodo en corrutina para traer la info del repo
         }catch (e: Exception) {
-            emit(Resource.Failure(e))
+            emit(Result.Failure(e))
         }
     }
 }

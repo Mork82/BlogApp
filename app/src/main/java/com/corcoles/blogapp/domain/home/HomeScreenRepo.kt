@@ -1,6 +1,6 @@
 package com.corcoles.blogapp.domain.home
 
-import com.corcoles.blogapp.core.Resource
+import com.corcoles.blogapp.core.Result
 import com.corcoles.blogapp.data.model.Post
 
 /*
@@ -11,5 +11,5 @@ interface HomeScreenRepo {
 
     //Busca todos los post del servidor
 
-    suspend fun getLastestPost(): Resource<List<Post>>
+    suspend fun getLastestPost(): Result<List<Post>>
 }

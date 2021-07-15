@@ -2,20 +2,18 @@ package com.corcoles.blogapp.ui.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.corcoles.blogapp.R
-import com.corcoles.blogapp.core.Resource
-import com.corcoles.blogapp.data.remote.auth.LoginDataSource
+import com.corcoles.blogapp.core.Result
+import com.corcoles.blogapp.data.remote.auth.AuthDataSource
 import com.corcoles.blogapp.databinding.FragmentLoginBinding
-import com.corcoles.blogapp.domain.auth.LoginRepoImpl
-import com.corcoles.blogapp.presentation.auth.LoginScreenViewModel
-import com.corcoles.blogapp.presentation.auth.LoginScreenViewModelFactory
+import com.corcoles.blogapp.domain.auth.AuthRepoImpl
+import com.corcoles.blogapp.presentation.auth.AuthViewModel
+import com.corcoles.blogapp.presentation.auth.AuthViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 
 /*
@@ -31,15 +29,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     /*
    * Instaciamos con by viewModels el cual nos da la posibilidad de crear el view model a traves del
    * delegador by del tipo seleccionado.
-   * Entre corcehets tenemos el factory creado en el LoginScreenViewModel mediante inyeccion de dependencias
+   * Entre corcehets tenemos el factory creado en el AuthViewModel mediante inyeccion de dependencias
    * Pasamos el viewModelFactory, entre parametros le pasamos el LoginScreenrepoImplent que extiende
    * del repositorio y a este a su vez le pasamos el data source
    * */
 
-    private val viewModel by viewModels<LoginScreenViewModel> {
-        LoginScreenViewModelFactory(
-            LoginRepoImpl(
-                LoginDataSource()
+    private val viewModel by viewModels<AuthViewModel> {
+        AuthViewModelFactory(
+            AuthRepoImpl(
+                AuthDataSource()
             )
         )
     }
@@ -100,15 +98,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun singIn(email: String, password: String) {
         viewModel.singIn(email, password).observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                is Resource.Loading -> {
+                is Result.Loading  -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.btnLogin.isEnabled = false
                 }
-                is Resource.Success -> {
+                is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
                 }
-                is Resource.Failure -> {
+                is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     binding.btnLogin.isEnabled = true
                     Toast.makeText(

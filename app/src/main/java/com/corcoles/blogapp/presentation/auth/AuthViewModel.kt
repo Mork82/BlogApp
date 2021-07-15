@@ -3,8 +3,8 @@ package com.corcoles.blogapp.presentation.auth
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.corcoles.blogapp.core.Resource
-import com.corcoles.blogapp.domain.auth.LoginRepo
+import com.corcoles.blogapp.core.Result
+import com.corcoles.blogapp.domain.auth.AuthRepo
 import kotlinx.coroutines.Dispatchers
 
 /*
@@ -13,16 +13,26 @@ import kotlinx.coroutines.Dispatchers
 * Utilizamoa la factory class para poder pasar datos por parametros al viewModel
 * */
 
-class LoginScreenViewModel(private val repo: LoginRepo) : ViewModel() {
+class AuthViewModel(private val repo: AuthRepo) : ViewModel() {
 
     fun singIn(email: String, password: String) = liveData(Dispatchers.IO) {
         //Emite un valor a la UI para poder mostrar un estado de carga antes de ir a bsucar la info al server
-        emit(Resource.Loading())
+        emit(Result.Loading())
         //Bloque try/Catch para poder capturar los error de la corrutina
         try {
-            emit(Resource.Success(repo.singIn(email, password)))// Metodo en corrutina para traer la info del repo
+            emit(Result.Success(repo.singIn(email, password)))// Metodo en corrutina para traer la info del repo
         } catch (e: Exception) {
-            emit(Resource.Failure(e))
+            emit(Result.Failure(e))
+        }
+    }
+    fun singUp(email: String, password: String, userName: String) = liveData(Dispatchers.IO) {
+        //Emite un valor a la UI para poder mostrar un estado de carga antes de ir a bsucar la info al server
+        emit(Result.Loading())
+        //Bloque try/Catch para poder capturar los error de la corrutina
+        try {
+            emit(Result.Success(repo.singUp(email, password, userName)))// Metodo en corrutina para traer la info del repo
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
         }
     }
 
@@ -32,8 +42,8 @@ class LoginScreenViewModel(private val repo: LoginRepo) : ViewModel() {
 * Clase factory para poder inyectar el repo
 * La implemantacion es distanta al del otro repo, se pude usar cualquira de los 2
 * */
-class LoginScreenViewModelFactory(private val repo: LoginRepo) : ViewModelProvider.Factory {
+class AuthViewModelFactory(private val repo: AuthRepo) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginScreenViewModel(repo) as T
+        return AuthViewModel(repo) as T
     }
 }

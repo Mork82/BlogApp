@@ -7,13 +7,13 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.corcoles.blogapp.R
-import com.corcoles.blogapp.core.Resource
 import com.corcoles.blogapp.data.remote.home.HomeScreenDataSource
 import com.corcoles.blogapp.databinding.FragmentHomeScreenBinding
 import com.corcoles.blogapp.domain.home.HomeScreenRepoImp
 import com.corcoles.blogapp.presentation.HomeScreenViewModel
 import com.corcoles.blogapp.presentation.HomeScreenViewModelFactory
 import com.corcoles.blogapp.ui.home.adapters.HomeScreenAdapter
+import com.corcoles.blogapp.core.Result
 
 
 class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
@@ -42,14 +42,14 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
 
         viewModel.fetLastestPost().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                is Resource.Loading -> { //Si el resource esta en carga. nos muetra la barra de carga
+                is Result.Loading -> { //Si el resource esta en carga. nos muetra la barra de carga
                     binding.progressBar.visibility = View.VISIBLE
                 }
-                is Resource.Success -> { //Si el resurce a tradico los datos correctamente del servidor, nos mustras estos en el Recycler
+                is Result.Success -> { //Si el resurce a tradico los datos correctamente del servidor, nos mustras estos en el Recycler
                     binding.progressBar.visibility = View.GONE
                     binding.rvHome.adapter = HomeScreenAdapter(result.data)
                 }
-                is Resource.Failure -> { //Si el resurce falla nos muestra un toast con la excepcion
+                is Result.Failure -> { //Si el resurce falla nos muestra un toast con la excepcion
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         requireContext(),
