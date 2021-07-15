@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.corcoles.blogapp.R
 import com.corcoles.blogapp.core.Result
+import com.corcoles.blogapp.core.hide
+import com.corcoles.blogapp.core.show
 import com.corcoles.blogapp.data.remote.auth.AuthDataSource
 import com.corcoles.blogapp.databinding.FragmentLoginBinding
 import com.corcoles.blogapp.domain.auth.AuthRepoImpl
@@ -99,15 +101,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.singIn(email, password).observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Loading  -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                     binding.btnLogin.isEnabled = false
                 }
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
                 }
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
                     Toast.makeText(
                         requireContext(),

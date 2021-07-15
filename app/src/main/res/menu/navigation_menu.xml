@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--El id de cada item del ¥menu, tiene que ser el mismo que el del fragment al que se va a navegar-->
+    <item
+        android:id="@+id/homeScreenFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/navigation_menu_home"/>
+    <item
+        android:id="@+id/cameraFragment"
+        android:icon="@drawable/ic_add_a_photo_24"
+        android:title="@string/navigation_menu_camera"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person_24"
+        android:title="@string/navigation_menu_profile"/>
+</menu>
