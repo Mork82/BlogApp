@@ -1,5 +1,6 @@
 package com.corcoles.blogapp.data.remote.auth
 
+import android.graphics.Bitmap
 import com.corcoles.blogapp.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -39,5 +40,9 @@ class AuthDataSource {
         }
 
         return authResult.user
+    }
+
+    fun updateUserProfile(imageBitmap: Bitmap, userName: String){
+
     }
 }

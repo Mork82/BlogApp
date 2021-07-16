@@ -42,6 +42,13 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_registerFragment_to_setupProfileFragment"
+            app:destination="@id/setupProfileFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_rigth"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/cameraFragment"
@@ -52,4 +59,9 @@
         android:id="@+id/profileFragment"
         android:name="ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/setupProfileFragment"
+        android:name="com.corcoles.blogapp.ui.auth.SetupProfileFragment"
+        android:label="fragment_setup_profile"
+        tools:layout="@layout/fragment_setup_profile" />
 </navigation>

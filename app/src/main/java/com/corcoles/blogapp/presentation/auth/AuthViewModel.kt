@@ -1,5 +1,6 @@
 package com.corcoles.blogapp.presentation.auth
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
@@ -14,29 +15,60 @@ import kotlinx.coroutines.Dispatchers
 * */
 
 class AuthViewModel(private val repo: AuthRepo) : ViewModel() {
-
+    //Metdo para autentiucarnos en la app
     fun singIn(email: String, password: String) = liveData(Dispatchers.IO) {
         //Emite un valor a la UI para poder mostrar un estado de carga antes de ir a bsucar la info al server
         emit(Result.Loading())
         //Bloque try/Catch para poder capturar los error de la corrutina
         try {
-            emit(Result.Success(repo.singIn(email, password)))// Metodo en corrutina para traer la info del repo
+            emit(
+                Result.Success(
+                    repo.singIn(
+                        email,
+                        password
+                    )
+                )
+            )// Metodo en corrutina para traer la info del repo
         } catch (e: Exception) {
             emit(Result.Failure(e))
         }
     }
+        //Metodo para registrarnos en la app
     fun singUp(email: String, password: String, userName: String) = liveData(Dispatchers.IO) {
         //Emite un valor a la UI para poder mostrar un estado de carga antes de ir a bsucar la info al server
         emit(Result.Loading())
         //Bloque try/Catch para poder capturar los error de la corrutina
         try {
-            emit(Result.Success(repo.singUp(email, password, userName)))// Metodo en corrutina para traer la info del repo
+            emit(
+                Result.Success(
+                    repo.singUp(
+                        email,
+                        password,
+                        userName
+                    )
+                )
+            )// Metodo en corrutina para traer la info del repo
         } catch (e: Exception) {
             emit(Result.Failure(e))
         }
     }
-
+    //Metodo para subir una imagen de usrio y un nickname
+    fun updateUserProfile(imageBitmap: Bitmap, userName: String) = liveData(Dispatchers.IO) {
+        emit(Result.Loading())
+        //Bloque try/Catch para poder capturar los error de la corrutina
+        try {
+            emit(// Metodo en corrutina para traer la info del repo
+                Result.Success(
+                    repo.updateProfile(imageBitmap, userName)
+                )
+            )
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
+        }
+    }
 }
+
+
 
 /*
 * Clase factory para poder inyectar el repo
