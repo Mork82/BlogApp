@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.registerFragment -> {
                     binding.buttonNavigation.hide()
                 }
+                R.id.setupProfileFragment->{
+                    binding.buttonNavigation.hide()
+                }
                 else -> {
                     binding.buttonNavigation.show()//Funcion de extension para mostrar la  vista
                 }
