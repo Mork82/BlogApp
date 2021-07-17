@@ -7,7 +7,7 @@ import kotlinx.coroutines.tasks.await
 
 
 /*
-* Clase encargada de traer la informacion de Firebase
+* Clase encargada de traer la informacion de Firebase Firestore
 * */
 class HomeScreenDataSource {
     suspend fun getLastestPost(): Result<List<Post>> {

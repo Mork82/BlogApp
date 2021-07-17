@@ -14,6 +14,8 @@ import com.corcoles.blogapp.presentation.HomeScreenViewModel
 import com.corcoles.blogapp.presentation.HomeScreenViewModelFactory
 import com.corcoles.blogapp.ui.home.adapters.HomeScreenAdapter
 import com.corcoles.blogapp.core.Result
+import com.corcoles.blogapp.core.hide
+import com.corcoles.blogapp.core.show
 
 
 class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
@@ -43,14 +45,20 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
         viewModel.fetLastestPost().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Loading -> { //Si el resource esta en carga. nos muetra la barra de carga
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                 }
                 is Result.Success -> { //Si el resurce a tradico los datos correctamente del servidor, nos mustras estos en el Recycler
                     binding.progressBar.visibility = View.GONE
+                    if (result.data.isEmpty()) {
+                        binding.emptyContainer.show()
+                        return@Observer
+                    } else {
+                        binding.emptyContainer.hide()
+                    }
                     binding.rvHome.adapter = HomeScreenAdapter(result.data)
                 }
                 is Result.Failure -> { //Si el resurce falla nos muestra un toast con la excepcion
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.show()
                     Toast.makeText(
                         requireContext(),
                         "Ocurrio un error : ${result.exception}",
