@@ -61,8 +61,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
           }*/
 
         //Es lo mismo pero con el operador let
-        firebaseAuth.currentUser?.let {
-            findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
+        firebaseAuth.currentUser?.let { user ->
+            if (user.displayName.isNullOrBlank()) {
+                findNavController().navigate(R.id.action_loginFragment_to_setupProfileFragment)
+            } else {
+                findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
+            }
         }
     }
 
@@ -76,9 +80,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             singIn(email, password)
         }
     }
+
     //metodo para navegare al fragment registro de
-    private fun goToSingUp(){
-        binding.txtSingup.setOnClickListener{
+    private fun goToSingUp() {
+        binding.txtSingup.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
@@ -100,14 +105,20 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun singIn(email: String, password: String) {
         viewModel.singIn(email, password).observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                is Result.Loading  -> {
+                is Result.Loading -> {
                     binding.progressBar.show()
                     binding.btnLogin.isEnabled = false
                 }
                 is Result.Success -> {
                     binding.progressBar.hide()
                     findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
+                    if (result.data?.displayName.isNullOrEmpty()) {
+                        findNavController().navigate(R.id.action_loginFragment_to_setupProfileFragment)
+                    } else {
+                        findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
+                    }
                 }
+
                 is Result.Failure -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
@@ -116,6 +127,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         "Error: ${result.exception}",
                         Toast.LENGTH_SHORT
                     ).show()
+
                 }
             }
 

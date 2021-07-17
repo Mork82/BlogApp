@@ -67,8 +67,9 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
             val alertDialog =
                 AlertDialog.Builder(requireContext()).setTitle("Uploading photo.....").create()
 
+
             imageBitmap?.let {
-                if (userName.isEmpty()) {
+                if (userName.isNotEmpty()) {
                     viewModel.updateUserProfile(it, userName).observe(viewLifecycleOwner,
                         Observer { result ->
                             when (result) {
@@ -86,7 +87,7 @@ class SetupProfileFragment : Fragment(R.layout.fragment_setup_profile) {
                             }
                         })
                 }
-            }
+            }?:Toast.makeText(requireContext(),"La variable esta vacia salta el let",Toast.LENGTH_LONG).show()
 
 
         }
